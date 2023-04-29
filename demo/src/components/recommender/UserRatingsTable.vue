@@ -5,8 +5,9 @@ import type { UserRating } from '@/script/user/userData'
 import { getAllItems } from '@/script/item/itemData'
 import { getAllUserRatings } from '@/script/user/userData'
 
-const items = ref<ItemData[]>()
-const userRatings = ref<UserRating[]>()
+const items = ref<ItemData[]>([])
+const userRatings = ref<UserRating[]>([])
+const activeUser = ref(0)
 
 getAllItems().then(
   (promise) => {
@@ -30,17 +31,17 @@ getAllUserRatings().then(
 </script>
 
 <template>
-  <table>
+  <table class="styled-table">
     <thead>
       <tr>
         <th>User</th>
-        <th v-for="(name, _, id) in items" :key="id">{{ name }}</th>
+        <th v-for="item in items" :key="item.id">{{ item.name }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(userid, ratings) in userRatings">
-        <td>{{ userid }}</td>
-        <td v-for="(_, _, itemId) in items">{{ ratings[itemId.toString()] }}</td>
+      <tr v-for="user in userRatings" v-bind:class="{'active-row': activeUser == user.userid}">
+        <td v-on:click="activeUser = user.userid" style="cursor: pointer;">{{ user.userid }}</td>
+        <td v-for="item in items">{{ user.ratings[item.id.toString()] }}</td>
       </tr>
     </tbody>
   </table>

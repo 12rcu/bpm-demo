@@ -8,7 +8,7 @@ export type UserSimilarities = {
 
 export type UserRating = {
   userid: number
-  ratings: Map<string, number>
+  ratings: Map<number, number>
 }
 
 export const getAllUserRatings = () => service.get<UserRating[]>('/user/ratings')
