@@ -111,3 +111,7 @@ body {
   color: #009879;
 }
 
+.styled-table tbody th.active-col {
+  font-weight: bold;
+  color: #009879;
+}

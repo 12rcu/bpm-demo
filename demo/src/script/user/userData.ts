@@ -1,8 +1,8 @@
 import service from '@/script/service'
 
-export type UserSimilarities = {
+export type UserSimilarity = {
   userid: number
-  ratings: Map<string, number>
+  ratings: Map<number, number>
   similarity: number
 }
 
