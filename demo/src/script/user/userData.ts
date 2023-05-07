@@ -11,4 +11,12 @@ export type UserRating = {
   ratings: Map<number, number>
 }
 
+export type UserData = {
+  userid: number
+  username: string
+  info: string | null
+}
+
 export const getAllUserRatings = () => service.get<UserRating[]>('/user/ratings')
+
+export const getAllUsers = () => service.get<UserData[]>('/users')

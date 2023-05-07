@@ -28,6 +28,7 @@ body {
   border: 2px solid rgb(var(--primary-rgb) / 80%);
   border-radius: 1rem;
   font-family: 'Source Code Pro', monospace;
+  font-size: calc(1rem + 5px);
   padding: 1rem;
 }
 
@@ -62,12 +63,22 @@ table thead tr {
   text-align: left;
 }
 
-th,
-td {
+th {
   padding: 0 1rem;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgb(var(--primary-rgb) / 45%);
 }
 
 .active {
   color: rgb(var(--success-rgb));
   font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
 }
