@@ -1,45 +1,42 @@
 <script setup lang="ts">
-import TheWelcome from './components/TheWelcome.vue'
 import UserRatingsTable from '@/components/recommender/UserRatingsTable.vue'
+import { ref } from 'vue'
+
+const token = ref(localStorage.getItem('token') ?? '')
+const inputToken = ref(localStorage.getItem('token') ?? '')
+function hasLocalStorageToken() {
+  return token.value !== ''
+}
+function save() {
+  localStorage.setItem('token', inputToken.value)
+  token.value = inputToken.value
+}
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <UserRatingsTable />
-    </div>
+    <h1>BPMN Demo</h1>
   </header>
 
   <main>
-    <TheWelcome />
+    <div id="cards">
+      <div class="card auth-card">
+        <h3>Authentication</h3>
+        <input v-model="inputToken" type="text" placeholder="Access Token" />
+        <button @click="save()">Save & Load</button>
+      </div>
+      <UserRatingsTable v-if="hasLocalStorageToken()"></UserRatingsTable>
+
+      <div class="card">
+        <h3>User</h3>
+        <form>
+          <label for="user-name">Add new User</label><br />
+          <input type="text" id="user-name" name="user-name" />
+          <input type="submit" value="Add User Name" />
+        </form>
+      </div>
+      <div class="card"></div>
+      <div class="card"></div>
+    </div>
   </main>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>

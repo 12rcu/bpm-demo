@@ -21,11 +21,11 @@ function setActiveItem(id: number) {
 }
 
 const usernameWithSimilarity = (data: UserSimilarity) => {
-    if(data.similarity == 0) {
-        return data.userid.toString()
-    } else {
-        return `${data.userid} (${Math.round((data.similarity + Number.EPSILON) * 100) / 100})`
-    }
+  if (data.similarity == 0) {
+    return data.userid.toString()
+  } else {
+    return `${data.userid} (${Math.round((data.similarity + Number.EPSILON) * 100) / 100})`
+  }
 }
 
 getAllItems().then(
@@ -54,28 +54,29 @@ getAllUserRatings().then(
 </script>
 
 <template>
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>User</th>
-        <th
-          v-for="item in items"
-          :key="item.id"
-          v-on:click="setActiveItem(item.id)"
-          v-bind:class="{ 'active-col': activeItem == item.id }"
-        >
-          {{ item.name }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="user in userSimilarities"
-        v-bind:class="{ 'active-row': activeUser == user.userid }"
-      >
-        <td v-on:click="setActiveUser(user.userid)" style="cursor: pointer">{{ usernameWithSimilarity(user) }}</td>
-        <td v-for="item in items">{{ user.ratings[item.id.toString()] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th
+            v-for="item in items"
+            :key="item.id"
+            v-on:click="setActiveItem(item.id)"
+            v-bind:class="{ 'active-col': activeItem == item.id }"
+          >
+            {{ item.name }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in userSimilarities" v-bind:class="{ active: activeUser == user.userid }">
+          <td v-on:click="setActiveUser(user.userid)" style="cursor: pointer">
+            {{ usernameWithSimilarity(user) }}
+          </td>
+          <td v-for="item in items">{{ user.ratings[item.id.toString()] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>

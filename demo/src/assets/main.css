@@ -1,35 +1,73 @@
-@import './base.css';
+:root {
+  --bg-color: rgb(20, 20, 20);
+  --blue-rgb: 33 150 243;
+  --primary-rgb: var(--blue-rgb);
+  --green-rgb: 77 207 166;
+  --success-rgb: var(--green-rgb);
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+  font-family: 'Source Code Pro', monospace;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+body {
+  align-items: center;
+  background-color: var(--bg-color);
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 0px;
+  color: white;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.card {
+  background-color: rgb(var(--primary-rgb) / 15%);
+  height: 20rem;
+  width: 17rem;
+  border: 2px solid rgb(var(--primary-rgb) / 80%);
+  border-radius: 1rem;
+  font-family: 'Source Code Pro', monospace;
+  padding: 1rem;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.table-card {
+  width: calc(58rem - 8px);
+  height: 17rem;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.auth-card {
+  width: calc(58rem - 8px);
+  height: 5rem;
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 62rem;
+  width: calc(100% - 1rem);
+}
+
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+  border-radius: 5px;
+}
+
+table thead tr {
+  background-color: rgb(var(--primary-rgb) / 80%);
+  text-align: left;
+}
+
+th,
+td {
+  padding: 0 1rem;
+}
+
+.active {
+  color: rgb(var(--success-rgb));
+  font-weight: bold;
 }

@@ -7,14 +7,11 @@ const config = {
   timeout: 120000
 }
 
-const service = axios.create(config)
-const token = "token"
+export const service = axios.create(config)
 
-service.interceptors.request.use(
-  async (config) => {
-    config.headers!.Authorization = `Bearer ${token}`
-    return config
-  }
-)
+service.interceptors.request.use(async (config) => {
+  config.headers!.Authorization = `Bearer ${localStorage.getItem('token')}`
+  return config
+})
 
 export default service
