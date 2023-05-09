@@ -7,3 +7,6 @@ export type ItemData = {
 }
 
 export const getAllItems = () => service.get<ItemData[]>('/items')
+
+export const addItem = (name: string, description: string) =>
+  service.put('/item', { name: name, description: description })

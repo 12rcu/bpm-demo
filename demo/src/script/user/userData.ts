@@ -20,3 +20,5 @@ export type UserData = {
 export const getAllUserRatings = () => service.get<UserRating[]>('/user/ratings')
 
 export const getAllUsers = () => service.get<UserData[]>('/users')
+
+export const addUser = (username: string) => service.put('/user', { username: username })
