@@ -134,6 +134,7 @@ getAllUserRatings().then(
       :items="items"
       v-if="activeUser !== 0"
       :user="activeUser"
-     :recommended-items="estimatedRatings"></ItemRecommendationComponent>
+      :recommended-items="estimatedRatings"
+    ></ItemRecommendationComponent>
   </div>
 </template>

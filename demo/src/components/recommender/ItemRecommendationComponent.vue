@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ItemData } from '@/script/item/itemData'
-import type {EstimatedRecommendations} from "@/script/recommender/userBasedRecommender";
+import type { EstimatedRecommendations } from '@/script/recommender/userBasedRecommender'
 
 interface Props {
   items: ItemData[]
