@@ -1,46 +1,20 @@
-# demo
+# Demo
 
-This template should help get you started developing with Vue 3 in Vite.
+For a working example, visit [demo](https://bpm.matthiasklenz.de).
 
-## Recommended IDE Setup
+## Navigation
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+1. To access the demo, you need to put in an API key in the first box.
+![auth](doc/aut.png)
+2. You can click Usernames and Items to get the similarity of other Users/ Items.
+The Similarity shows up in brackets next to the User.
+![ratings](doc/ratings.png)
+3. If you clicked a User, another table appears with an estimation of each unrated item, what the user will most likely rate the item
+4. At the bottom are some more boxes, they may not work as of a CORS issue
 
-## Type Support for `.vue` Imports in TS
+## Not Implemented Features & Bugs
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- Items currently don't show the similarity to other items when clicked
+- The panels at the bottom (sometimes) don't work
+- The Recommendation Table don't show the item based algorithm
+- Settings to fine tune the Algorithms are missing (Similarity Measure, knn, ...)
