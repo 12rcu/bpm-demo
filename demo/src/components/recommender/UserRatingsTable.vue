@@ -4,13 +4,19 @@ import { ref } from 'vue'
 import type { UserSimilarity, UserData } from '@/script/user/userData'
 import { getAllItems } from '@/script/item/itemData'
 import { getAllUserRatings, getAllUsers } from '@/script/user/userData'
-import { getUserSimilarities } from '@/script/recommender/userBasedRecommender'
+import {
+  getUserRecommendations,
+  getUserSimilarities
+} from '@/script/recommender/userBasedRecommender'
+import type { EstimatedRecommendations } from '@/script/recommender/userBasedRecommender'
+import ItemRecommendationComponent from '@/components/recommender/ItemRecommendationComponent.vue'
 
 const items = ref<ItemData[]>([])
 const users = ref<UserData[]>([])
 const userSimilarities = ref<UserSimilarity[]>([])
 const activeUser = ref(0)
 const activeItem = ref(0)
+const estimatedRatings = ref<EstimatedRecommendations>({})
 
 function setActiveUser(id: number) {
   const match = userSimilarities.value.find((it) => it.userid == id)
@@ -18,9 +24,19 @@ function setActiveUser(id: number) {
     match.similarity = 1
   }
 
+  getUserRecommendations(id).then(
+    (promise) => {
+      console.log('Received recommendations!')
+      estimatedRatings.value = promise.data
+    },
+    (err) => {
+      console.log("couldn't load user recommendations: ")
+      console.debug(err)
+    }
+  )
+
   getUserSimilarities(id).then(
     (promise) => {
-      console.debug('get sim:', promise.data)
       promise.data.forEach((similarity) => {
         const match = userSimilarities.value.find((it) => it.userid == similarity.userid)
         if (match != undefined) {
@@ -94,7 +110,7 @@ getAllUserRatings().then(
             v-for="item in items"
             :key="item.id"
             v-on:click="setActiveItem(item.id)"
-            v-bind:class="{ active: activeItem == item.id }"
+            v-bind:class="{ active: activeItem === item.id }"
             style="cursor: pointer"
           >
             {{ item.name }}
@@ -102,13 +118,22 @@ getAllUserRatings().then(
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in userSimilarities" v-bind:class="{ active: activeUser == user.userid }">
+        <tr
+          v-for="user in userSimilarities"
+          v-bind:class="{ active: activeUser === user.userid }"
+          v-bind:key="user.userid"
+        >
           <td v-on:click="setActiveUser(user.userid)" style="cursor: pointer">
             {{ usernameWithSimilarity(user) }}
           </td>
-          <td v-for="item in items">{{ user.ratings[item.id.toString()] }}</td>
+          <td v-for="item in items" v-bind:key="item.id">{{ user.ratings[item.id.toString()] }}</td>
         </tr>
       </tbody>
     </table>
+    <ItemRecommendationComponent
+      :items="items"
+      v-if="activeUser !== 0"
+      :user="activeUser"
+     :recommended-items="estimatedRatings"></ItemRecommendationComponent>
   </div>
 </template>

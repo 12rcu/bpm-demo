@@ -14,7 +14,7 @@ body {
   display: flex;
   height: 100vh;
   justify-content: center;
-  overflow: hidden;
+  /*overflow: hidden;*/
   flex-wrap: wrap;
   margin: 0px;
   padding: 0px;
@@ -34,7 +34,7 @@ body {
 
 .table-card {
   width: calc(58rem - 8px);
-  height: 17rem;
+  height: auto;
 }
 
 .auth-card {
@@ -48,6 +48,7 @@ body {
   gap: 1rem;
   max-width: 62rem;
   width: calc(100% - 1rem);
+  height: auto;
 }
 
 table {

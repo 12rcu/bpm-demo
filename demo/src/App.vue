@@ -7,7 +7,7 @@ import type { ItemData } from '@/script/item/itemData'
 import type { UserData } from '@/script/user/userData'
 import { getAllUsers } from '@/script/user/userData'
 import UserComponent from '@/components/UserComponent.vue'
-import ItemComponent from "@/components/ItemComponent.vue";
+import ItemComponent from '@/components/ItemComponent.vue'
 
 const token = ref(localStorage.getItem('token') ?? '')
 const inputToken = ref(localStorage.getItem('token') ?? '')

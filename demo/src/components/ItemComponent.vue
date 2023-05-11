@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import {addItem} from "@/script/item/itemData";
+import { addItem } from '@/script/item/itemData'
 
 const itemName = ref('')
 
