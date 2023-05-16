@@ -32,10 +32,10 @@ function addRatingBtn() {
   <div class="card">
     <h3>Recommend</h3>
     <select v-model="selUserid">
-      <option v-for="user in users" :value="user.userid">{{ user.username }}</option>
+      <option v-for="user in users" :value="user.userid" :key="user.userid">{{ user.username }}</option>
     </select>
     <select v-model="selItemId">
-      <option v-for="item in items" :value="item.id">{{ item.name }}</option>
+      <option v-for="item in items" :value="item.id" :key="item.id">{{ item.name }}</option>
     </select>
     <input v-model="rating" type="number" placeholder="Rating" />
     <button @click="addRatingBtn()">Add Rating</button>
