@@ -6,17 +6,18 @@ interface Props {
   items: ItemData[]
   recommendedItems: EstimatedRecommendations
   user: number
+  heading: string
 }
 
 const props = defineProps<Props>()
 
 function getItemName(item: any) {
-  return props.items.find((it) => it.id === Number(item))
+  return props.items.find((it) => it.id === Number(item)) ?? 'undefined'
 }
 </script>
 <template>
   <div>
-    <h5>Recommended</h5>
+    <h3>{{ props.heading }}</h3>
     <table>
       <thead>
         <tr>

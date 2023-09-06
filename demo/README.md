@@ -14,7 +14,7 @@ The Similarity shows up in brackets next to the User.
 
 ## Not Implemented Features & Bugs
 
-- Items currently don't show the similarity to other items when clicked
-- The panels at the bottom (sometimes) don't work
-- The Recommendation Table don't show the item based algorithm
-- Settings to fine tune the Algorithms are missing (Similarity Measure, knn, ...)
+- [ ] Items currently don't show the similarity to other items when clicked
+- [x] The panels at the bottom (sometimes) don't work
+- [ ] The Recommendation Table don't show the item based algorithm
+- [ ] Settings to fine tune the Algorithms are missing (Similarity Measure, knn, ...)

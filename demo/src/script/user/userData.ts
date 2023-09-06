@@ -22,3 +22,7 @@ export const getAllUserRatings = () => service.get<UserRating[]>('/user/ratings'
 export const getAllUsers = () => service.get<UserData[]>('/users')
 
 export const addUser = (username: string) => service.put('/user', { username: username })
+
+export const editUser = (userData: UserData) => service.post('/user', userData)
+
+export const delUser = (id: number) => service.delete(`/user/${id}`)
